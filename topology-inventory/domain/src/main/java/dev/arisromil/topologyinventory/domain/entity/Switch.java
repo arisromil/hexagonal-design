@@ -1,5 +1,8 @@
 package dev.arisromil.topologyinventory.domain.entity;
 
+import dev.arisromil.topologyinventory.domain.specification.CIDRSpecification;
+import dev.arisromil.topologyinventory.domain.specification.NetworkAmountSpec;
+import dev.arisromil.topologyinventory.domain.specification.NetworkAvailabilitySpec;
 import dev.arisromil.topologyinventory.domain.vo.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,7 +31,17 @@ public final class Switch extends Equipment {
         return s -> s.switchType .equals(switchType);
     }
 
+    public boolean addNetworkToSwitch(Network network) {
+        var availabilitySpec = new NetworkAvailabilitySpec(network);
+        var cidrSpec = new CIDRSpecification();
+        var amountSpec = new NetworkAmountSpec();
 
+        cidrSpec.check(network.getNetworkCidr());
+        availabilitySpec.check(this);
+        amountSpec.check(this);
+
+        return this.switchNetworks.add(network);
+    }
 
     public boolean removeNetworkFromSwitch(Network network){
         return this.switchNetworks.remove(network);
