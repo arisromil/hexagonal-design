@@ -1,8 +1,8 @@
 package dev.arisromil.topologyinventory.domain.specification;
 
-import dev.arisromil.topologyinventory.domain.entity.EdgeRouter;
+import dev.arisromil.topologyinventory.domain.entity.CoreRouter;
 
 public final class SameCountrySpec extends AbstractSpecification {
-    public SameCountrySpec(EdgeRouter coreRouter) {
+    public SameCountrySpec(CoreRouter coreRouter) {
     }
 }
