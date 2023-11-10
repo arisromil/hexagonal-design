@@ -8,6 +8,13 @@ import java.util.stream.Collectors;
 
 public class NetworkService {
 
+    public static Network findNetwork(List<Network> networks, Predicate<Network> networkPredicate){
+        return networks
+                .stream()
+                .filter(networkPredicate)
+                .findFirst().orElse(null);
+    }
+
     public static List<Network> filterAndRetrieveNetworks(List<Network> networks, Predicate<Network> networkPredicate){
         return networks
                 .stream()
