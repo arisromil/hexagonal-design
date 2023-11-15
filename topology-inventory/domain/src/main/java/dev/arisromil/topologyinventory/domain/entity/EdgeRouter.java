@@ -6,6 +6,7 @@ import dev.arisromil.topologyinventory.domain.specification.SameIpSpec;
 import dev.arisromil.topologyinventory.domain.vo.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Map;
@@ -14,7 +15,8 @@ import java.util.Map;
 @ToString
 public final class EdgeRouter extends Router {
 
-    private final Map<Id, Switch> switches;
+    @Setter
+    private Map<Id, Switch> switches;
 
     @Builder
     public EdgeRouter(Id id, Vendor vendor, Model model, IP ip, Location location, RouterType routerType, Map<Id, Switch> switches) {
