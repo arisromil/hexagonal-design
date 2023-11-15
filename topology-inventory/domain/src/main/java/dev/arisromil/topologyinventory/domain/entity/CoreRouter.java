@@ -7,6 +7,7 @@ import dev.arisromil.topologyinventory.domain.specification.SameIpSpec;
 import dev.arisromil.topologyinventory.domain.vo.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Map;
@@ -15,8 +16,8 @@ import java.util.Map;
 @ToString
 public final class CoreRouter extends Router {
 
-    @Getter
-    private final Map<Id, Router> routers;
+    @Setter
+    private Map<Id, Router> routers;
 
     @Builder
     public CoreRouter(Id id, Vendor vendor, Model model, IP ip, Location location, RouterType routerType, Map<Id, Router> routers) {
