@@ -25,7 +25,7 @@ public class NetworkManagementInputPort implements NetworkManagementUseCase {
         return networkSwitch;
     }
     @Override
-    public Switch removeNetworkFromSwitch(Network network, Switch networkSwitch) {
+    public Switch removeNetworkFromSwitch(String network, Switch networkSwitch) {
         networkSwitch.removeNetworkFromSwitch(network);
         return networkSwitch;
     }
