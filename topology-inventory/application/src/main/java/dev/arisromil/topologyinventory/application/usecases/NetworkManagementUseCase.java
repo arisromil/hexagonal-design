@@ -7,5 +7,5 @@ import dev.arisromil.topologyinventory.domain.vo.Network;
 public interface NetworkManagementUseCase {
     Network createNetwork(IP networkAddress,String networkName,int networkCidr);
     Switch addNetworkToSwitch(Network network,Switch networkSwitch);
-    Switch removeNetworkFromSwitch(Network network, Switch networkSwitch);
+    Switch removeNetworkFromSwitch(String network, Switch networkSwitch);
 }
