@@ -1,11 +1,5 @@
-package dev.arisromil.topologyinventory.application;
+package dev.arisromil.topologyinventory.framework;
 
-import dev.arisromil.topologyinventory.application.ports.input.NetworkManagementInputPort;
-import dev.arisromil.topologyinventory.application.ports.input.RouterManagementInputPort;
-import dev.arisromil.topologyinventory.application.ports.input.SwitchManagementInputPort;
-import dev.arisromil.topologyinventory.application.usecases.NetworkManagementUseCase;
-import dev.arisromil.topologyinventory.application.usecases.RouterManagementUseCase;
-import dev.arisromil.topologyinventory.application.usecases.SwitchManagementUseCase;
 import dev.arisromil.topologyinventory.domain.entity.CoreRouter;
 import dev.arisromil.topologyinventory.domain.entity.EdgeRouter;
 import dev.arisromil.topologyinventory.domain.entity.Router;
@@ -17,15 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ApplicationTestData {
-    protected RouterManagementUseCase routerManagementUseCase;
-
-    protected SwitchManagementUseCase switchManagementUseCase;
-
-    protected NetworkManagementUseCase networkManagementUseCase;
-
-    protected Router router;
-
+public class FrameworkTestData {
     protected List<Router> routers = new ArrayList<>();
 
     protected List<Switch> switches = new ArrayList<>();
@@ -53,10 +39,15 @@ public class ApplicationTestData {
     protected Location locationB;
 
     public void loadData(){
-        this.routerManagementUseCase = new RouterManagementInputPort(dev.arisromil.topologyinventory.framework.adapters.output.h2.RouterManagementH2Adapter.getInstance());
-        this.switchManagementUseCase = new SwitchManagementInputPort();
-        this.networkManagementUseCase = new NetworkManagementInputPort();
         this.locationA = new Location(
+                "Amos Ln",
+                "Tully",
+                "NY",
+                13159,
+                "United States",
+                42.797310F,
+                -76.130750F);
+        this.locationB = new Location(
                 "Av Republica Argentina 3109",
                 "Curitiba",
                 "PR",
@@ -64,14 +55,6 @@ public class ApplicationTestData {
                 "Brazil",
                 10F,
                 -10F);
-        this.locationB = new Location(
-                "Av Republica Argentina 3110",
-                "Curitiba",
-                "PR",
-                80610360,
-                "Brazil",
-                11F,
-                -11F);
         this.network  = Network.builder().
                 networkAddress(IP.fromAddress("20.0.0.0")).
                 networkName("TestNetwork").
@@ -115,7 +98,6 @@ public class ApplicationTestData {
                 location(locationA).
                 routerType(RouterType.CORE).
                 build();
-        this.coreRouter.addRouter(newCoreRouter);
         this.newEdgeRouter = EdgeRouter.builder().
                 id(Id.withId("ca23800e-9b5a-11eb-a8b3-0242ac130003")).
                 vendor(Vendor.CISCO).
